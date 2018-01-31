@@ -1,0 +1,7 @@
+ITEM EVENTS:			
+Add Item
+Remove Item
+
+VALID ITEM PARAMETERS:
+knives
+bottle

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
+  m_Name: Response5
+  m_EditorClassIdentifier: 
+  characterID: 3
+  showResponse: 0
+  dialogText: "Wait, this room was locked before. \nWhat if we lock it again and take
+    the key with us. Then we can always go back and take them when we know more.\r"
+  responseType: 1
+  dialogID: 1
+  nextChoiceHolder: 2
+  npcResponse: {fileID: 11400000}
