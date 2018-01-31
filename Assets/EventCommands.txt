@@ -5,3 +5,22 @@ Remove Item
 VALID ITEM PARAMETERS:
 knives
 bottle
+
+NAVIGATION EVENT:
+Navigate
+
+VALID NAVIGATION PARAMETERS:
+1
+2
+...
+17
+
+DIALOG EVENT:
+Activate Dialog
+
+VALID DIALOG PARAMETERS:
+0
+1
+2
+...
+8

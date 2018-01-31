@@ -7,7 +7,9 @@ public class CharacterHandler : MonoBehaviour {
 
 	public static CharacterHandler instance;
 
+	public CanvasGroup cvg;
 	[SerializeField]private Text characterText;
+	[SerializeField]private Image characterHeadBG;
 
 	[SerializeField]private Character[] allCharacters;
 	[SerializeField]private Image[] characterImages;//only used to pass to Character
@@ -25,17 +27,20 @@ public class CharacterHandler : MonoBehaviour {
 
 	void Start(){
 		DeactivateCharacters ();
+		cvg.alpha = 1f;
 	}
 
 	public void ActivateCharacters(int[] personIDs){//on conversation starts
 		activePersons = personIDs;
 		for(int i = 0; i < activePersons.Length; i ++){//max 2
-			allCharacters [personIDs[i]].Activate (characterImages[i]);
+			allCharacters [personIDs[i]].Activate (
+				characterImages[i]);
 		}
 	}
 
 	public void CharacterSpeaks(int personID = -1){
-		string characterName = (personID == -1) ? "Player:" : allCharacters [personID].myName;
+		string characterName = (personID == -1) ? "You" : allCharacters [personID].myName;
+		characterHeadBG.enabled = (personID == -1) ? false : true;
 		characterText.enabled = true;
 		characterText.text = characterName;
 	}

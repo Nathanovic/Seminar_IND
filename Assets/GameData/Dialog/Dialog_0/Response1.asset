@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Name: Response1
   m_EditorClassIdentifier: 
   characterID: 3
-  dialogText: "I'm character 3. I woke up here, just like you just did. The others
-    did too. \nThere you can see character 1. \nOver there are character 2 and character
-    3. "
+  dialogText: "I'm character Abby. I woke up here, just like you just did. \nThere
+    you can see Jackson. Susan and Sean are scouting the building."
   isFinalResponse: 0
+  showCharacter: 1
   responseType: 0
   nextResponse: {fileID: 11400000, guid: 0deacc3bf92b8fb4198458faf94789ad, type: 2}
   nextPlayerChoiceStep: 1
+  eventNames: []
+  eventParams: []

@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class ChoiceHolder : MonoBehaviour {
 
 	[SerializeField]private GameObject optionPrefab;
-	[SerializeField]private Vector3 nextOptionPos = new Vector3(-300,-450,0);
-	[SerializeField]private Vector3 optionOffset = new Vector3(600,0,0);
+	[SerializeField]private Vector3 nextOptionPos = new Vector3(-250,-465,0);
+	[SerializeField]private Vector3 optionOffset = new Vector3(500,0,0);
 	[SerializeField]private bool shiftTextOptions = true;
 
 	//[SerializeField]private int choiceID;

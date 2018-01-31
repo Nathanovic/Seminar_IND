@@ -20,7 +20,7 @@ public class Dialog : MonoBehaviour {
 	public int[] npcCharacterIDs = new int[2];//used by dialog, to prepare CharacterHandler
 
 	void Start(){
-		characterScript = transform.parent.GetComponentInChildren<CharacterHandler> ();
+		characterScript = transform.parent.parent.GetComponentInChildren<CharacterHandler> ();
 	}
 
 	public void ActivateNextChoice(int nextChoiceStep){//activate the next text option

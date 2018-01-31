@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   characterID: 3
-  dialogText: Knives?
+  dialogText: You investigate the trash together
   isFinalResponse: 0
+  showCharacter: 0
   responseType: 0
-  nextResponse: {fileID: 11400000, guid: a960aca008d63834ead24be59b80f1ab, type: 2}
+  nextResponse: {fileID: 11400000, guid: 995fc589e57b4944f864b7858e19d1fb, type: 2}
   nextPlayerChoiceStep: 1
+  eventNames: []
+  eventParams: []

@@ -25,6 +25,12 @@ public class InteractionButton : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
+		if (eventName == "Activate Dialog") {
+			Button myButton = GetComponent<Button> ();
+			Image myImg = GetComponent<Image> ();
+			myButton.enabled = false;
+			myImg.enabled = false;
+		}
 		EventManager.TriggerEvent (eventName, eventParam);
 	}
 }

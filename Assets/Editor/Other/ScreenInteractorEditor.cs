@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(ScreenInteractor))]
+[CanEditMultipleObjects]
 public class ScreenInteractorEditor : Editor {
 
 	ScreenInteractor script;
@@ -31,7 +32,15 @@ public class ScreenInteractorEditor : Editor {
 		}
 		EditorGUILayout.EndHorizontal ();
 
-		DrawPropertiesExcluding (serializedObject, "m_Script", "activateDialog", "linkedDialog");
+		SerializedProperty requireItemProp = serializedObject.FindProperty ("requireItem");
+		EditorGUILayout.BeginHorizontal ();
+		EditorGUILayout.PropertyField(requireItemProp, new GUIContent("Require item:"));
+		if (requireItemProp.boolValue == true) {
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("itemName"), GUIContent.none);			
+		}
+		EditorGUILayout.EndHorizontal ();
+
+		DrawPropertiesExcluding (serializedObject, "m_Script", "activateDialog", "linkedDialog", "requireItem", "itemName");
 		serializedObject.ApplyModifiedProperties ();
 
 		int afterCount = script.createdInteractions.Length;
@@ -67,7 +76,7 @@ public class ScreenInteractorEditor : Editor {
 
 	void OnDisable(){
 		if (!Application.isPlaying) {
-			script.DeactivateSelf ();
+			VisibleBackground.TryChangingBackground (script);
 		}
 	}
 }

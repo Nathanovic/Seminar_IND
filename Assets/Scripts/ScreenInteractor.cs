@@ -8,6 +8,10 @@ public class ScreenInteractor : MonoBehaviour {
 	public bool activateDialog;
 	public int linkedDialog = 0;
 
+	public bool requireItem;
+	public string itemName;
+	private Inventory inventoryScript;
+
 	private PlayerNavigator playerNavigator;//used to confirm that we have moved to a new location
 	public InteractionButton[] createdInteractions;
 
@@ -19,6 +23,24 @@ public class ScreenInteractor : MonoBehaviour {
 
 	void Start () {
 		playerNavigator = transform.parent.GetComponent<PlayerNavigator> ();
+		if (requireItem) {
+			inventoryScript = transform.root.GetComponentInChildren<Inventory> ();
+		}
+	}
+
+	public bool CanEnter(){
+		if (!requireItem) {
+			return true;
+		}
+		else {
+			if (inventoryScript.ItemInInventory (itemName)) {
+				requireItem = false;
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}
 
 	public void NavigateToMe(){
@@ -27,22 +49,19 @@ public class ScreenInteractor : MonoBehaviour {
 
 		playerNavigator.onDestinationReached += DestinationReached;
 		playerNavigator.onNavigateToNewLoc += TransitionToOtherBackground;
+
+		ResponseManager.instance.onDialogStarted += DeactivateButtons;
+		ResponseManager.instance.onDialogEnded += ActivateButtons;
 	}
 
 	public void DestinationReached(){
 		playerNavigator.onDestinationReached -= DestinationReached;
 		if (activateDialog) {
 			activateDialog = false;//now we cant activate a dialog anymore :)
-			ResponseManager.instance.onDialogEnded += DialogEnded;
 			ResponseManager.instance.ActivateDialog (linkedDialog);
 		} else {
 			ActivateButtons ();
 		}
-	}
-
-	void DialogEnded(){
-		ResponseManager.instance.onDialogEnded -= DialogEnded;		
-		ActivateButtons ();
 	}
 
 	void ActivateButtons(){
@@ -50,20 +69,23 @@ public class ScreenInteractor : MonoBehaviour {
 		myCVG.blocksRaycasts = true;
 	}
 
-	void DeactivateButtons(){//called when the textfield is shown
-		//ResponseManager.instance.onTextFieldDisabled += ActivateButtons;
+	void DeactivateButtons(){
+		myCVG.interactable = false;
+		myCVG.blocksRaycasts = false;		
 	}
 
 	public void DeactivateSelf(){//called by editorscript
 		myCVG.alpha = 0f;
-		myCVG.interactable = false;
-		myCVG.blocksRaycasts = false;
+		DeactivateButtons ();
 	}
 
 	void TransitionToOtherBackground(){
 		playerNavigator.onNavigateToNewLoc -= TransitionToOtherBackground;
 		DeactivateSelf ();
 		StartCoroutine (FadeMeOut ());
+
+		ResponseManager.instance.onDialogStarted -= DeactivateButtons;
+		ResponseManager.instance.onDialogEnded -= ActivateButtons;
 	}
 
 	IEnumerator FadeMeOut(){

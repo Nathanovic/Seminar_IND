@@ -7,6 +7,11 @@ using System.Collections.Generic;
 [CustomEditor(typeof(CharacterHandler))]
 public class CharacterHandlerInspector : Editor {
 
+	void OnEnable(){
+		CharacterHandler script = (CharacterHandler)target;
+		script.cvg.alpha = 1f;
+	}
+
 	public override void OnInspectorGUI (){
 		base.OnInspectorGUI ();
 		if (GUILayout.Button ("Refresh character data")) {
@@ -25,5 +30,10 @@ public class CharacterHandlerInspector : Editor {
 
 	static int SortByID(Character c1, Character c2){
 		return c1.myID.CompareTo (c2.myID);
+	}
+
+	void OnDisable(){
+		CharacterHandler script = (CharacterHandler)target;
+		script.cvg.alpha = 0f;
 	}
 }

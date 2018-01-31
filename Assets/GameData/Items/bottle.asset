@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c165ffc53c02a7241befc4a1b7397de6, type: 3}
   m_Name: bottle
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  itemImage: {fileID: 21300000, guid: 161133c4a7ce4414a873c511d87e3b02, type: 3}
   canDeplete: 0
   depletionTime: 20

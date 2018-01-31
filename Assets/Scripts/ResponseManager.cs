@@ -8,7 +8,6 @@ public class ResponseManager : MonoBehaviour {
 	public static ResponseManager instance;
 	private CanvasGroup cvg;
 	[SerializeField]private Text responseText;
-	[SerializeField]private GameObject continueButton;
 	private ResponseAction awaitedResponse;
 
 	public delegate void ResponseDelegate();
@@ -37,6 +36,13 @@ public class ResponseManager : MonoBehaviour {
 		cvg = GetComponent<CanvasGroup> ();
 		characterScript = transform.parent.GetComponentInChildren<CharacterHandler> ();
 		EnableTextField (false);
+
+		EventManager.StartListening ("Activate Dialog", ActivateDialogWithEvent);
+	}
+
+	void ActivateDialogWithEvent(string dialogIndexParam){
+		int dialogIndex = int.Parse (dialogIndexParam);
+		ActivateDialog (dialogIndex);
 	}
 
 	public void ActivateDialog(int dialogIndex){
@@ -56,7 +62,8 @@ public class ResponseManager : MonoBehaviour {
 	public void ShowDialogTextNPC(ResponseAction responseHolder){
 		state = ResponseState.npcResponse;
 		EnableTextField ();
-		characterScript.CharacterSpeaks (responseHolder.characterID);
+
+		TryShowCharacter (responseHolder);
 
 		responseHolder.RespondAction ();
 		responseText.text = responseHolder.dialogText;
@@ -65,16 +72,7 @@ public class ResponseManager : MonoBehaviour {
 	public void Continue(){//called when the continue button is pressed
 		if (state == ResponseState.playerResponse) {//geef npc response
 			if (awaitedResponse != null) {
-				state = ResponseState.npcResponse;
-
-				responseText.text = awaitedResponse.dialogText;
-				awaitedResponse.RespondAction ();
-				if (awaitedResponse.showCharacter) {
-					characterScript.CharacterSpeaks (awaitedResponse.characterID);
-				}
-				else {
-					characterScript.DisableCharacter ();
-				}
+				ShowDialogTextNPC (awaitedResponse);
 				awaitedResponse = null;
 			}
 			else {
@@ -82,12 +80,22 @@ public class ResponseManager : MonoBehaviour {
 				EndDialog ();
 			}
 		} else {//player text
-			EnableTextField (false);
 			if (onNPCResponseClickedAway != null) {//used to activate the next text option for the player
+				responseText.text = "Choose your response...";
 				onNPCResponseClickedAway ();
 			} else {
 				EndDialog ();
 			}
+		}
+	}
+
+	void TryShowCharacter(ResponseAction responseAction){
+		if (responseAction.showCharacter) {
+			characterScript.CharacterSpeaks (responseAction.characterID);
+		}
+		else {
+			responseText.fontStyle = FontStyle.Italic;
+			characterScript.DisableCharacter ();
 		}
 	}
 
@@ -98,6 +106,7 @@ public class ResponseManager : MonoBehaviour {
 	void EndDialog(){
 		state = ResponseState.invisible;
 		onDialogEnded ();//cannot be null, since dialog always subcribes to this if the dialog starts
+		EnableTextField(false);
 	}
 
 	void EnableTextField(bool active = true){
@@ -113,7 +122,8 @@ public class ResponseManager : MonoBehaviour {
 		cvg.alpha = active ? 1f : 0f;
 		cvg.interactable = active;
 		cvg.blocksRaycasts = active;
-		continueButton.SetActive(active);
+
+		responseText.fontStyle = FontStyle.Normal;
 	}
 }
 

@@ -93,6 +93,16 @@ public class Inventory : MonoBehaviour {
 		return null;
 	}
 
+	public bool ItemInInventory(string itemName){
+		for (int i = 0; i < allItems.Count; i++) {
+			if (allItems [i].name == itemName) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	void ShowInventory(){
 		inventoryButtonObject.SetActive (true);
 	}

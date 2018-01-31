@@ -21,4 +21,4 @@ MonoBehaviour:
   eventNames:
   - Add Item
   eventParams:
-  - knives
+  - knife
