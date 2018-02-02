@@ -9,7 +9,9 @@ public class CharacterHandler : MonoBehaviour {
 
 	public CanvasGroup cvg;
 	[SerializeField]private Text characterText;
-	[SerializeField]private Image characterHeadBG;
+	[SerializeField]private Image characterHeadImg;
+	[SerializeField]private Image characterNameBG;
+	[SerializeField]private Sprite[] characterHeads; 
 
 	[SerializeField]private Character[] allCharacters;
 	[SerializeField]private Image[] characterImages;//only used to pass to Character
@@ -33,20 +35,28 @@ public class CharacterHandler : MonoBehaviour {
 	public void ActivateCharacters(int[] personIDs){//on conversation starts
 		activePersons = personIDs;
 		for(int i = 0; i < activePersons.Length; i ++){//max 2
-			allCharacters [personIDs[i]].Activate (
-				characterImages[i]);
+			allCharacters [personIDs[i]].Activate (characterImages[i]);
 		}
 	}
 
 	public void CharacterSpeaks(int personID = -1){
 		string characterName = (personID == -1) ? "You" : allCharacters [personID].myName;
-		characterHeadBG.enabled = (personID == -1) ? false : true;
+
+		if (personID > -1) {
+			characterHeadImg.enabled = true;
+			characterHeadImg.sprite = characterHeads [personID];
+		} else {
+			characterHeadImg.enabled = false;
+		}
+		characterNameBG.enabled = true;
 		characterText.enabled = true;
 		characterText.text = characterName;
 	}
 
 	public void DisableCharacter(){
 		DeactivateCharacterText ();
+		characterHeadImg.enabled = false;
+		characterNameBG.enabled = false;
 	}
 
 	void DeactivateCharacterText(){

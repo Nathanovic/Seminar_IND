@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
   m_Name: Response5
   m_EditorClassIdentifier: 
-  characterID: 3
-  dialogText: "I don't know. Someone drugged and kidnapped us, I guess... \nIf you
-    can't remember either, how should anyone of us know?"
+  characterID: 2
+  dialogText: "I don't know. \nSomeone drugged and kidnapped us, I guess... "
   isFinalResponse: 0
+  showCharacter: 1
   responseType: 0
   nextResponse: {fileID: 11400000, guid: 8d90aa5e9dc9ee647bb36c300934e0cd, type: 2}
   nextPlayerChoiceStep: 1
+  eventNames: []
+  eventParams: []

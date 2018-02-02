@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogText: So, what will we do with the leftovers?
   isFinalResponse: 0
   showCharacter: 1
-  responseType: 1
-  nextResponse: {fileID: 11400000, guid: c991931fd7e99304dae7a0f5f095a155, type: 2}
+  responseType: 0
+  nextResponse: {fileID: 11400000, guid: 692de27e8df716f4b8ac63a437197702, type: 2}
   nextPlayerChoiceStep: 1
   eventNames: []
   eventParams: []

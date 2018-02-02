@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
+
+	public static Inventory instance;
+
 	public Item[] availableItems = new Item[5];
 
 	public Image[] itemImages;
@@ -14,6 +17,10 @@ public class Inventory : MonoBehaviour {
 	private CanvasGroup inventoryContentCVG;
 	private GameObject inventoryButtonObject;
 	private bool inventoryOpen = true;//is toggled to false in Start()
+
+	void Awake(){
+		instance = this;
+	}
 
 	void Start(){
 		EventManager.StartListening ("Add Item", TryAddItem);

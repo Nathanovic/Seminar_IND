@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ResponseAction))]
+[CustomEditor(typeof(ResponseAction), true)]
 [CanEditMultipleObjects]
 public class TextResponseEditor : Editor {
 
 	public override void OnInspectorGUI () {
 		serializedObject.Update ();
-		DrawPropertiesExcluding (serializedObject, "m_Script", "dialogText", "responseType", "nextResponse", "nextPlayerChoiceStep", "eventNames", "eventParams");
 
-		bool isFinalResponse = serializedObject.FindProperty ("isFinalResponse").boolValue;
+		SerializedProperty showChIDProp = serializedObject.FindProperty ("showCharacter");
+		EditorGUILayout.BeginHorizontal ();
+		EditorGUILayout.PropertyField (showChIDProp);
+		if (showChIDProp.boolValue) {
+			EditorGUILayout.PropertyField (serializedObject.FindProperty("characterID"), GUIContent.none);			
+		}
+		EditorGUILayout.EndHorizontal ();
+
+		SerializedProperty isFinalRespProp = serializedObject.FindProperty ("isFinalResponse");
+		EditorGUILayout.PropertyField (isFinalRespProp);
 		string dialogTextLabel = "Dialog text:";
-		if (!isFinalResponse) {
+		if (!isFinalRespProp.boolValue) {
 			SerializedProperty responseTypeProp = serializedObject.FindProperty ("responseType");
 			EditorGUILayout.PropertyField (responseTypeProp);
 			ResponseType respType = (ResponseType)responseTypeProp.enumValueIndex;
@@ -31,11 +39,15 @@ public class TextResponseEditor : Editor {
 		SerializedProperty dialogTextProp = serializedObject.FindProperty ("dialogText");
 		EditorGUILayout.LabelField (dialogTextLabel);
 		dialogTextProp.stringValue = EditorGUILayout.TextArea (dialogTextProp.stringValue);
-		if(isFinalResponse) {
+		if(isFinalRespProp.boolValue) {
 			SerializedProperty namesList = serializedObject.FindProperty ("eventNames");
 			SerializedProperty paramsList = serializedObject.FindProperty("eventParams");
 			ShowCombinedList(namesList, paramsList);
 		}
+
+		DrawPropertiesExcluding (serializedObject, "m_Script", "characterID", "dialogText", 
+			"isFinalResponse", "showCharacter", "responseType", "nextResponse", 
+			"nextPlayerChoiceStep", "eventNames", "eventParams");
 
 		serializedObject.ApplyModifiedProperties ();
 	}

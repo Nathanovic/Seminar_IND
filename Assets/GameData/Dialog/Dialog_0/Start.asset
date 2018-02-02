@@ -11,9 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: 
-  characterID: 3
-  dialogText: There you are! We already begun to think you might be dead!
+  characterID: 2
+  dialogText: There you are! We already began to think you might be dead!
   isFinalResponse: 0
+  showCharacter: 1
   responseType: 1
   nextResponse: {fileID: 0}
   nextPlayerChoiceStep: 0
+  eventNames: []
+  eventParams: []

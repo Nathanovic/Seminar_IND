@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: Response1
   m_EditorClassIdentifier: 
   characterID: 0
-  showResponse: 0
   dialogText: Good, then we can get that son of a bitch who put us in here.
+  isFinalResponse: 0
+  showCharacter: 1
   responseType: 1
-  dialogID: 1
-  nextChoiceHolder: 1
-  npcResponse: {fileID: 0}
+  nextResponse: {fileID: 0}
+  nextPlayerChoiceStep: 0
+  eventNames: []
+  eventParams: []

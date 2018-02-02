@@ -8,6 +8,7 @@ public class ResponseManager : MonoBehaviour {
 	public static ResponseManager instance;
 	private CanvasGroup cvg;
 	[SerializeField]private Text responseText;
+	[SerializeField]private GameObject continueButton;
 	private ResponseAction awaitedResponse;
 
 	public delegate void ResponseDelegate();
@@ -80,7 +81,7 @@ public class ResponseManager : MonoBehaviour {
 				EndDialog ();
 			}
 		} else {//player text
-			if (onNPCResponseClickedAway != null) {//used to activate the next text option for the player
+			if (onNPCResponseClickedAway != null) {//used to activate the next text option for the player or the response from the npc
 				responseText.text = "Choose your response...";
 				onNPCResponseClickedAway ();
 			} else {
@@ -100,13 +101,14 @@ public class ResponseManager : MonoBehaviour {
 	}
 
 	public void ActivateNextPlayerChoice(int nextPlayerChoiceStep){
+		continueButton.SetActive (false);
 		dialogs [currentDialogID].ActivateNextChoice (nextPlayerChoiceStep);
 	}
 
 	void EndDialog(){
 		state = ResponseState.invisible;
-		onDialogEnded ();//cannot be null, since dialog always subcribes to this if the dialog starts
 		EnableTextField(false);
+		onDialogEnded ();//cannot be null, since dialog always subcribes to this if the dialog starts
 	}
 
 	void EnableTextField(bool active = true){
@@ -115,6 +117,10 @@ public class ResponseManager : MonoBehaviour {
 		}else if(!textFieldActive && active){
 			if(onDialogStarted != null)
 				onDialogStarted ();
+		}
+
+		if (active) {
+			continueButton.SetActive (true);		
 		}
 
 		textFieldActive = active;

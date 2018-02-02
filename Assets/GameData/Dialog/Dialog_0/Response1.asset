@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
   m_Name: Response1
   m_EditorClassIdentifier: 
-  characterID: 3
-  dialogText: "I'm character Abby. I woke up here, just like you just did. \nThere
-    you can see Jackson. Susan and Sean are scouting the building."
+  characterID: 2
+  dialogText: "I'm Susan. I woke up here, just like you just did. \nThere you can
+    see Sean. Abby and Sean are behind you."
   isFinalResponse: 0
   showCharacter: 1
   responseType: 0

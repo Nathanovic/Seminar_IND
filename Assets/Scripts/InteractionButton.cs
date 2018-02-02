@@ -12,6 +12,7 @@ public class InteractionButton : MonoBehaviour {
 	[SerializeField]private string eventParam;
 
 	[HideInInspector]public bool addedOnClickEvent;
+	[SerializeField]private bool disableSelf;
 
 	public void Insp_Init(){
 		#if UNITY_EDITOR
@@ -24,8 +25,8 @@ public class InteractionButton : MonoBehaviour {
 		#endif
 	}
 
-	void TaskOnClick(){
-		if (eventName == "Activate Dialog") {
+	protected virtual void TaskOnClick(){
+		if (disableSelf) {
 			Button myButton = GetComponent<Button> ();
 			Image myImg = GetComponent<Image> ();
 			myButton.enabled = false;

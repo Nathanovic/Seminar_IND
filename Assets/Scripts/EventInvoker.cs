@@ -5,7 +5,7 @@ public class EventInvoker {
 	public string eventName;
 	public string eventParam;
 
-	public void Trigger(){
+	public virtual void Trigger(){
 		EventManager.TriggerEvent (eventName, eventParam);
 	}
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
+  m_Name: Ending1_2
+  m_EditorClassIdentifier: 
+  characterID: 0
+  dialogText: "You and your group desperately tried to find a way out, but there was
+    none. \nOne by one, you saw your team members die."
+  isFinalResponse: 0
+  showCharacter: 0
+  responseType: 0
+  nextResponse: {fileID: 11400000, guid: bb0daede6ac1b754f8e9db221e0d98ec, type: 2}
+  nextPlayerChoiceStep: 1
+  eventNames: []
+  eventParams: []

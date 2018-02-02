@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
   m_Name: Response4
   m_EditorClassIdentifier: 
-  characterID: 3
+  characterID: 2
   dialogText: I don't know. Someone thinks it's funny I guesss...
   isFinalResponse: 0
   showCharacter: 1

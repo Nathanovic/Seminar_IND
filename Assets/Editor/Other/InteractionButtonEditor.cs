@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(InteractionButton))]
+[CustomEditor(typeof(InteractionButton), true)]
 [CanEditMultipleObjects]
 public class InteractionButtonEditor : Editor {
 

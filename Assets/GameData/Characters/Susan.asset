@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myID: 2
   myName: Susan
-  mySprite: {fileID: 21300000, guid: 992528c15ff008f429525ae7d1ee7cc2, type: 3}
+  mySprite: {fileID: 21300000, guid: 479383db242df40428d8275c0f00a80f, type: 3}

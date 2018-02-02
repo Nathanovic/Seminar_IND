@@ -11,10 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5d8b82aa85bf545b9da0164a4d3b84, type: 3}
   m_Name: Response6
   m_EditorClassIdentifier: 
-  characterID: 3
+  characterID: 2
   dialogText: "Let\u2019s try to get out of this room first, that will hopefully clear
     things up.\r"
   isFinalResponse: 1
+  showCharacter: 1
   responseType: 0
   nextResponse: {fileID: 0}
   nextPlayerChoiceStep: 1
+  eventNames: []
+  eventParams: []

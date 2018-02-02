@@ -10,7 +10,6 @@ public class ScreenInteractor : MonoBehaviour {
 
 	public bool requireItem;
 	public string itemName;
-	private Inventory inventoryScript;
 
 	private PlayerNavigator playerNavigator;//used to confirm that we have moved to a new location
 	public InteractionButton[] createdInteractions;
@@ -23,9 +22,6 @@ public class ScreenInteractor : MonoBehaviour {
 
 	void Start () {
 		playerNavigator = transform.parent.GetComponent<PlayerNavigator> ();
-		if (requireItem) {
-			inventoryScript = transform.root.GetComponentInChildren<Inventory> ();
-		}
 	}
 
 	public bool CanEnter(){
@@ -33,7 +29,7 @@ public class ScreenInteractor : MonoBehaviour {
 			return true;
 		}
 		else {
-			if (inventoryScript.ItemInInventory (itemName)) {
+			if (Inventory.instance.ItemInInventory (itemName)) {
 				requireItem = false;
 				return true;
 			}
