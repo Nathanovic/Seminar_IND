@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: X_Ending3
   m_EditorClassIdentifier: 
   characterID: 0
-  dialogText: Friendly ending
+  dialogText: Together you set off to find the other group
   isFinalResponse: 1
   showCharacter: 0
   responseType: 1
